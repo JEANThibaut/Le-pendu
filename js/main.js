@@ -1,4 +1,7 @@
+//Déclaration des variables
 alert("Bienvenue, vous aller jouer au jeu du pendu");
+let choice = checkChoice();
+
 
 
 // Liste des mots sélectionnable par l'ordinateur
@@ -7,23 +10,63 @@ let words= [
     "pizza",
     "internet"
 ];
-//Le joueur choisi une lettre
 
+//---------------------------------Fonctions
 
-
+//Vérification choix utilisateur
 function checkChoice(){
     for (let i=0 ; i<3 ; i++){  
         let playerChoice = prompt("Entrer une lettre"); 
-                
-        if (playerChoice.length==1){
-                    alert("merci")
-                    return playerChoice
-                }
-                else
-                alert("merci d'entrer une seule lettre");
-            
+        if (isNaN(playerChoice))
+            if (playerChoice.length==1){
+                        alert("Merci!")
+                        return playerChoice.toLowerCase()
+                    }
+                    else
+                    alert("Merci d'entrer UNE SEULE lettre!");
+        else 
+        alert("Ceci n'est pas une lettre!")        
     }
 }
-let choice = checkChoice()
+//Choix ordinateur
+let computerChoice = words[Math.floor(Math.random()*words.length)];
+    console.log(computerChoice);
 
-console.log(choice);
+//Décomposer le choix de l'ordinateur en tableau
+
+let computerChoiceArray = Array.from(computerChoice);
+console.log(computerChoiceArray);
+
+
+
+
+
+
+
+
+
+//Recherche valeur dans array
+if(computerChoiceArray.includes(choice)){
+    console.log(choice)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Comparer les valeurs du nouveau tableau au choix du joueur et afficher un message
+
+
+//Déroulement
+
+
+
+// console.log(choice);
