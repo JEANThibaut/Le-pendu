@@ -9,7 +9,6 @@ let userChoices=[];
 let randomWord 
 let display = [];
 
- 
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -22,7 +21,7 @@ function randomComputer(){
 //Choix de l'utilisateur, vérification et affichage des underscores
 function checkChoice(){
     
-    let playerChoice = prompt("Entrer une lettre \n"); 
+    let playerChoice = prompt("Entrer une lettre \n" + display.join("")); 
     
     for (let i=0 ; i<3 ; i++){  
         if (isNaN(playerChoice))
@@ -40,21 +39,27 @@ function checkChoice(){
 }
 
 function fillDisplay(){
-    let display = [];
-    for (var compare of randomWord){
-        for (var i of userChoices){
-            if (compare.includes(i)){
-            display.push(i);
-            
-                console.log("Lettre trouvée");
-            }
-            else
-            display.push("_");
-            
-                console.log("Aucune lettre trouvée");
+    if(display.length <1){
+        for (var i=0;i<randomWord.length; i++){
+            display.push("_")
         }
-        
-    }console.log(display.join(""));
+    }
+    else{ display = [];
+            for (var compare of randomWord){
+                for (var i of userChoices){
+                    if (compare.includes(i)){
+                    display.push(i);
+                    
+                        console.log("Lettre trouvée");
+                    }
+                    else
+                    display.push("_");
+                    
+                        console.log("Aucune lettre trouvée");
+                }
+            }            
+        }
+        console.log(display.join(""));
 }
 // //Affichage des caractères
 
@@ -74,51 +79,8 @@ alert("Bienvenue, vous aller jouer au jeu du pendu");
 randomComputer();
 console.log(randomWord);
 //Début du jeu
+fillDisplay();
 checkChoice();
 console.log(userChoices);
 fillDisplay();
 
-
-
-
-
-
-
-
-// displayCaracters();
-
-
-
-// computerToArray();
-
-
-
-
-// console.log(userChoices);
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Comparer les valeurs du nouveau tableau au choix du joueur et afficher un message
-
-
-
-
-
-
-// console.log(choice);
