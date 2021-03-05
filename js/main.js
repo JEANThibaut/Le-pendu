@@ -1,26 +1,35 @@
-//Déclaration des variables
-alert("Bienvenue, vous aller jouer au jeu du pendu");
-let choice = checkChoice();
-
-
-
+//---------------------------------Déclaration des variables
 // Liste des mots sélectionnable par l'ordinateur
 let words= [
     "texte",
     "pizza",
     "internet"
 ];
+ let userChoices=[];
+ let display=[];
+
+ //Choix ordinateur et décomposition en tableau
+
+let computerChoice = words[Math.floor(Math.random()*words.length)];
+    console.log(computerChoice);
+
+let computerChoiceArray = Array.from(computerChoice);
+console.log(computerChoiceArray);
+
 
 //---------------------------------Fonctions
+//Comparer les deux choix
 
-//Vérification choix utilisateur
-function checkChoice(){
+
+//Choix de l'utilisateur, vérification et affichage des underscores
+function makeChoice(){
     for (let i=0 ; i<3 ; i++){  
-        let playerChoice = prompt("Entrer une lettre"); 
+        let playerChoice = prompt("Entrer une lettre" + display  ); 
         if (isNaN(playerChoice))
             if (playerChoice.length==1){
                         alert("Merci!")
-                        return playerChoice.toLowerCase()
+                        return userChoices.push(playerChoice.toLowerCase());
+                        
                     }
                     else
                     alert("Merci d'entrer UNE SEULE lettre!");
@@ -28,27 +37,35 @@ function checkChoice(){
         alert("Ceci n'est pas une lettre!")        
     }
 }
-//Choix ordinateur
-let computerChoice = words[Math.floor(Math.random()*words.length)];
-    console.log(computerChoice);
-
-//Décomposer le choix de l'ordinateur en tableau
-
-let computerChoiceArray = Array.from(computerChoice);
-console.log(computerChoiceArray);
 
 
 
 
+//Déroulement
+
+alert("Bienvenue, vous aller jouer au jeu du pendu");
+let choice = makeChoice();
+
+
+
+    for (var compare of computerChoiceArray){
+        for (var i of userChoices){
+            if (compare.includes(i)){
+            display.push(i);
+                //console.log("Lettre trouvée");
+            }
+            else
+            display.push("_");
+            //console.log("Aucune lettre trouvée");
+        }
+    }
+
+console.log(userChoices);
+console.log(display.join(""));
 
 
 
 
-
-//Recherche valeur dans array
-if(computerChoiceArray.includes(choice)){
-    console.log(choice)
-}
 
 
 
@@ -65,7 +82,7 @@ if(computerChoiceArray.includes(choice)){
 // Comparer les valeurs du nouveau tableau au choix du joueur et afficher un message
 
 
-//Déroulement
+
 
 
 
