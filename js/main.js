@@ -18,30 +18,13 @@ function randomComputer(){
            return randomWord = Array.from(computerChoice)
 }
 
-function fillDisplay(){
-    if(display.length==0){
-            display.fill("_");
-    }
-    else{ 
-        for (var compare of randomWord){
-            for (var i of userChoices){
-                if (compare.includes(i)){
-                display.push(i);
-                    console.log("Lettre trouvée");
-                }
-                else
-                display.push("_");
-                    console.log("Aucune lettre trouvée");
-            }
-        }
-    }    
-}
-
 
 //Choix de l'utilisateur, vérification et affichage des underscores
-function makeChoice(){
+function checkChoice(){
+    
+    let playerChoice = prompt("Entrer une lettre \n"); 
+    
     for (let i=0 ; i<3 ; i++){  
-      
         if (isNaN(playerChoice))
             if (playerChoice.length==1){
                         alert("Merci!")
@@ -56,6 +39,23 @@ function makeChoice(){
     }
 }
 
+function fillDisplay(){
+    let display = [];
+    for (var compare of randomWord){
+        for (var i of userChoices){
+            if (compare.includes(i)){
+            display.push(i);
+            
+                console.log("Lettre trouvée");
+            }
+            else
+            display.push("_");
+            
+                console.log("Aucune lettre trouvée");
+        }
+        
+    }console.log(display.join(""));
+}
 // //Affichage des caractères
 
 // function displayCaracters(){
@@ -73,16 +73,20 @@ function makeChoice(){
 alert("Bienvenue, vous aller jouer au jeu du pendu");
 randomComputer();
 console.log(randomWord);
-fillDisplay();
-let playerChoice = prompt("Entrer une lettre \n"); 
-makeChoice();
-
-
+//Début du jeu
+checkChoice();
 console.log(userChoices);
-console.log(display);
+fillDisplay();
+
+
+
+
+
+
+
 
 // displayCaracters();
-// console.log(display);
+
 
 
 // computerToArray();
