@@ -9,13 +9,17 @@ let words= [
  let display=[];
 
  //Choix ordinateur et décomposition en tableau
-
-let computerChoice = words[Math.floor(Math.random()*words.length)];
+function randomComputer(){
+    let computerChoice = words[Math.floor(Math.random()*words.length)];
+           return computerChoice
     console.log(computerChoice);
+}
 
-let computerChoiceArray = Array.from(computerChoice);
-console.log(computerChoiceArray);
-
+function computerToArray(){
+    let computerChoiceArray = Array.from(randomComputer());
+    console.log(computerChoiceArray);
+    return computerChoiceArray
+}
 
 //---------------------------------Fonctions
 //Comparer les deux choix
@@ -44,20 +48,24 @@ function makeChoice(){
 //Déroulement
 
 alert("Bienvenue, vous aller jouer au jeu du pendu");
+randomComputer();
+computerToArray();
 let choice = makeChoice();
 
 
-
-    for (var compare of computerChoiceArray){
-        for (var i of userChoices){
-            if (compare.includes(i)){
-            display.push(i);
-                //console.log("Lettre trouvée");
+// if(userChoises.lenght ==0){
+//     display.push("-").repeat(computerChoiceArray.length)
+// }
+    for (var compare of computerToArray()){
+            for (var i of userChoices){
+                if (compare.includes(i)){
+                display.push(i);
+                    //console.log("Lettre trouvée");
+                }
+                else
+                display.push("_");
+                //console.log("Aucune lettre trouvée");
             }
-            else
-            display.push("_");
-            //console.log("Aucune lettre trouvée");
-        }
     }
 
 console.log(userChoices);
