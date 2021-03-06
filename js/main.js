@@ -7,8 +7,8 @@ let words= [
 ];
 let userChoices=[];
 let randomWord 
-let display = [];
-
+let display=[];
+// let display = [];
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -18,59 +18,55 @@ function randomComputer(){
 }
 
 
-//Choix de l'utilisateur, vérification et affichage des underscores
+//Choix de l'utilisateur et vérification 
 function checkChoice(){
-    
-    let playerChoice = prompt("Entrer une lettre \n" + display.join("")); 
-    
-    for (let i=0 ; i<3 ; i++){  
-        if (isNaN(playerChoice))
-            if (playerChoice.length==1){
+    for (let j=0; j<=3; j++){
+        if (j===3){
+        alert("Nous n'avons pas compris votre demande")
+        }  
+        else if (j<3){
+            for (let i=0 ; i<j ; i++){  
+                let playerChoice = prompt("Entrer une lettre"+"\n"+ display.join("")); 
+                if (isNaN(playerChoice)){
+                    if (playerChoice.length==1){
                         alert("Merci!")
                         return userChoices.push(playerChoice.toLowerCase());
                     }
-                    else{
-                        alert("Merci d'entrer UNE SEULE lettre!");
-                    }
-                        else {
-                        alert("Ceci n'est pas une lettre!")        
-                    }
-    }
-}
-
-function fillDisplay(){
-    if(display.length <1){
-        for (var i=0;i<randomWord.length; i++){
-            display.push("_")
-        }
-    }
-    else{ display = [];
-            for (var compare of randomWord){
-                for (var i of userChoices){
-                    if (compare.includes(i)){
-                    display.push(i);
-                    
-                        console.log("Lettre trouvée");
-                    }
                     else
-                    display.push("_");
-                    
-                        console.log("Aucune lettre trouvée");
+                    alert("Merci d'entrer UNE SEULE lettre!");
                 }
-            }            
-        }
-        console.log(display.join(""));
+                else
+                alert("Ceci n'est pas une lettre!")        
+            }
+         }   
+    }
 }
-// //Affichage des caractères
 
-// function displayCaracters(){
-//     if(display.lenght ==0){
-//        display = display.push("_").repeat(randomWord.length);
-//     }
-//     else{ 
+// Comparaison et underscore
+function compare(){
+    display = [];
+    for (let i=0; i<randomWord.length;i++){
+      if (userChoices.indexOf(randomWord[i])==-1){
+        display.push("_");
+      }
+      else if (userChoices.indexOf(randomWord[i])!==-1){
+       display.push(randomWord[i]);
+      }
+    }
+    console.log(display.join(""));
+    //function .indexOf return -1 if false
+    }
+    
 
-//     }
-// }
+
+
+    
+
+
+
+
+
+
 
 
 //Déroulement
@@ -78,9 +74,29 @@ function fillDisplay(){
 alert("Bienvenue, vous aller jouer au jeu du pendu");
 randomComputer();
 console.log(randomWord);
-//Début du jeu
-fillDisplay();
 checkChoice();
 console.log(userChoices);
-fillDisplay();
+compare();
+checkChoice();
+compare();
+
+
+
+
+//Affichage underscore
+// // for (let i=0; i<randomWord.length; i++){}
+// randomWord.forEach(values => console.log(values));
+// userChoices.forEach(values => console.log(values));
+
+
+
+
+
+
+
+
+
+
+
+
 
