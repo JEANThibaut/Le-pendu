@@ -8,7 +8,7 @@ let words= [
 let userChoices=[];
 let randomWord 
 let display= [];
-let tries = 8;
+let tries = 7 ;
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -19,87 +19,71 @@ function randomComputer(){
 
 //Choix de l'utilisateur et vérification 
 function checkChoice(){
-    for (let j=0; j<=3; j++){
-        if (j===3){
-        alert("Nous n'avons pas compris votre demande")
-        }  
-        else if (j<3){
-            for (let i=0 ; i<j ; i++){  
-                let playerChoice = prompt("Entrer une lettre"+"\n"+ "Il vous reste " + tries + " tentatives" + "\n" + display.join("")); 
-                if (isNaN(playerChoice)){
-                    if (playerChoice.length==1){
-                        // alert("Merci!")
-                        return userChoices.push(playerChoice.toLowerCase());
-                    }
-                    else
-                    alert("Merci d'entrer UNE SEULE lettre!");
-                }
-                else
-                alert("Ceci n'est pas une lettre!")        
+    for (let i=0 ; i<3 ; i++){  
+        let playerChoice = prompt("Entrer une lettre"+"\n"+ "Il vous reste " + tries + " tentatives" + "\n" + display.join("")); 
+        if (isNaN(playerChoice)){
+            if (playerChoice.length==1){
+                 return userChoices.push(playerChoice.toLowerCase());
             }
-         }   
-    }
-}
-
-// Comparaison et underscore
-//function .indexOf return -1 if false
-function compare(){
+            else
+                alert("Merci d'entrer UNE SEULE lettre!");
+            }
+        else
+            alert("Ceci n'est pas une lettre!")        
+        }
+}   
+//remplissage tableau
+function fillDisplay(){
     display = [];
     for (let i=0; i<randomWord.length;i++){
-      if (userChoices.indexOf(randomWord[i])==-1){
-        display.push("_");
-      }
-      else if (userChoices.indexOf(randomWord[i])!==-1){
-       display.push(randomWord[i]);
-      }
-     
+        if (userChoices.indexOf(randomWord[i])==-1){
+            display.push("_");
+        }
+        else if (userChoices.indexOf(randomWord[i])!==-1){
+        display.push(randomWord[i]);
+        }
     }
-    console.log(display.join(""));
-    }
-    
+    console.log("display " + display.join(""));
+}
+
+//Function Score 
+function score(){
+    let lastItem = userChoices[userChoices.length - 1];
+    let n = randomWord.includes(lastItem)
+        if (!n){
+            tries --
+        }          
+}
+// Fonction boucle de jeu
+function play(){
+    checkChoice();        
+    score();
+    fillDisplay();
+
+
+}   
 
 //Déroulement
 
 alert("Bienvenue, vous aller jouer au jeu du pendu");
 randomComputer();
-console.log(randomWord);
-//Init display
+console.log("random "+ randomWord);
+//Init display for first round
 display = new Array(randomWord.length).fill("_");
 
-//Boucle de jeu
-for (let score=7; score>=0; score--){
-    
-    if (score==0){
-        alert("Dommage!")
-        break;
-    }
-    else if(display.indexOf(randomWord) !=-1){
-        alert("Bravo!")
-        break;
+
+
+while(tries>0){
+        if (display.join("")===randomWord.join("")){
+            alert("bravo")
+        break
+        }
         
-    }
-    else tries --;
-    checkChoice();
-    console.log(userChoices);
-    compare();
-    
-    }
+        else if (tries==0){
+            alert("dommage")
+        
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        play();
+}
 
