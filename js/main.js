@@ -9,6 +9,7 @@ let userChoices=[];
 let randomWord 
 let display= [];
 let tries = 7 ;
+
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -19,17 +20,17 @@ function randomComputer(){
 
 //Choix de l'utilisateur et vérification 
 function checkChoice(){
-    for (let j=0; j<=3; j++){
-        if (j===3){
-        alert("Nous n'avons pas compris votre demande")
-        }  
-        else if (j<3){
-            for (let i=0 ; i<j ; i++){  
+    // for (let j=0; j<=3; j++){
+    //     if (j===3){
+    //     alert("Nous n'avons pas compris votre demande")
+    //     }  
+    //     else if (j<3){
+            for (let i=0 ; i<3 ; i++){  
                 let playerChoice = prompt("Entrer une lettre"+"\n"+ "Il vous reste " + tries + " tentatives" + "\n" + display.join("")); 
                 if (isNaN(playerChoice)){
                     if (playerChoice.length==1){
-                         return userChoices.push(playerChoice.toLowerCase());
-                        }
+                        return userChoices.push(playerChoice.toLowerCase());
+                    }
                     else
                     alert("Merci d'entrer UNE SEULE lettre!");
                 }
@@ -37,8 +38,8 @@ function checkChoice(){
                 alert("Ceci n'est pas une lettre!")        
             }
          }   
-    }
-}
+    // }
+// }
 
 // Comparaison et underscore
 //function .indexOf return -1 if false
@@ -51,22 +52,18 @@ function fillDisplay(){
       }
       else if (userChoices.indexOf(randomWord[i])!==-1){
        display.push(randomWord[i]);
-       
       
       }
-     
     }
     console.log(display.join(""));
-    }
+}
+
+
     
 // Fonction boucle de jeu
 function play(){
-    
-    
     checkChoice();
     fillDisplay();
-    console.log(userChoices);
-    console.log(display);
     
 }
 
@@ -86,11 +83,12 @@ display = new Array(randomWord.length).fill("_");
 while(tries>0){
         if (display.join("")===randomWord.join("")){
             alert("bravo")
-        break
+       break
         }
+        
         else if (tries==0){
             alert("dommage")
-        break
+        
         }
         play();
 }
