@@ -8,7 +8,7 @@ let words= [
 let userChoices=[];
 let randomWord 
 let display= [];
-let tries = 8;
+let tries =8 ;
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -43,7 +43,7 @@ function checkChoice(){
 
 // Comparaison et underscore
 //function .indexOf return -1 if false
-function compare(){
+function fillDisplay(){
     display = [];
     for (let i=0; i<randomWord.length;i++){
       if (userChoices.indexOf(randomWord[i])==-1){
@@ -57,49 +57,52 @@ function compare(){
     console.log(display.join(""));
     }
     
+// Fonction boucle de jeu
+function play(){
+    tries --
+    
+    checkChoice();
+    fillDisplay();
+    console.log(userChoices);
+    console.log(display);
+    
+}
+
+
+
+
+
 
 //Déroulement
 
 alert("Bienvenue, vous aller jouer au jeu du pendu");
 randomComputer();
 console.log(randomWord);
-//Init display
+//Init display for first round
 display = new Array(randomWord.length).fill("_");
 
-//Boucle de jeu
-for (let score=7; score>=0; score--){
-    
-    if (score==0){
-        alert("Dommage!")
-        break;
-    }
-    else if(display.indexOf(randomWord) !=-1){
-        alert("Bravo!")
-        break;
+for (let score=0;score<7;score++){
+        if (display.join("")===randomWord.join("")){
+            alert("bravo")
+        break
+        }
+
+        play();
+
+}
+// //Boucle de jeu
+// for (let values of randomWord){
+//     if(userChoices[values].includes(randomWord[values])){
+//      alert("Bravo!")
+//     } 
+
+    // for (let score = 0; score<7 ;score ++){
+    //     if (userChoices.indexOf(score) !==randomWord.indexOf(score))
+    //     alert("Bravo")
+    //     else if (score<7){ 
+    //     play()
+    //     }
+    //     else alert("Dommage")
         
-    }
-    else tries --;
-    checkChoice();
-    console.log(userChoices);
-    compare();
-    
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // };
+// }
