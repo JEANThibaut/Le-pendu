@@ -8,7 +8,7 @@ let words= [
 let userChoices=[];
 let randomWord 
 let display= [];
-let tries =8 ;
+let tries = 7 ;
 //---------------------------------Fonctions
 
 //Choix ordinateur et décomposition en tableau
@@ -28,9 +28,8 @@ function checkChoice(){
                 let playerChoice = prompt("Entrer une lettre"+"\n"+ "Il vous reste " + tries + " tentatives" + "\n" + display.join("")); 
                 if (isNaN(playerChoice)){
                     if (playerChoice.length==1){
-                        // alert("Merci!")
-                        return userChoices.push(playerChoice.toLowerCase());
-                    }
+                         return userChoices.push(playerChoice.toLowerCase());
+                        }
                     else
                     alert("Merci d'entrer UNE SEULE lettre!");
                 }
@@ -48,9 +47,12 @@ function fillDisplay(){
     for (let i=0; i<randomWord.length;i++){
       if (userChoices.indexOf(randomWord[i])==-1){
         display.push("_");
+        
       }
       else if (userChoices.indexOf(randomWord[i])!==-1){
        display.push(randomWord[i]);
+       
+      
       }
      
     }
@@ -59,7 +61,7 @@ function fillDisplay(){
     
 // Fonction boucle de jeu
 function play(){
-    tries --
+    
     
     checkChoice();
     fillDisplay();
@@ -81,28 +83,15 @@ console.log(randomWord);
 //Init display for first round
 display = new Array(randomWord.length).fill("_");
 
-for (let score=0;score<7;score++){
+while(tries>0){
         if (display.join("")===randomWord.join("")){
             alert("bravo")
         break
         }
-
+        else if (tries==0){
+            alert("dommage")
+        break
+        }
         play();
-
 }
-// //Boucle de jeu
-// for (let values of randomWord){
-//     if(userChoices[values].includes(randomWord[values])){
-//      alert("Bravo!")
-//     } 
 
-    // for (let score = 0; score<7 ;score ++){
-    //     if (userChoices.indexOf(score) !==randomWord.indexOf(score))
-    //     alert("Bravo")
-    //     else if (score<7){ 
-    //     play()
-    //     }
-    //     else alert("Dommage")
-        
-    // };
-// }
